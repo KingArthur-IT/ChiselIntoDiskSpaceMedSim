@@ -1,0 +1,6 @@
+popupData = `{
+    "introTitle" : "Message", 
+    "introText" : "Click the OK button to start simulation. Click the mouse button to move the chisel.",
+    "correctTitle": "Message",
+    "correctText": "Good work! The chisel is now positioned properly."
+}`
