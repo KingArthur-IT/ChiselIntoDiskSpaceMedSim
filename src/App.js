@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 //scene
 let canvas, camera, scene, light, renderer,
-	chiselPlane;
+	chiselPlane, hummerSound;
 //popup
 
 let popupPlaneMesh,
@@ -14,6 +14,7 @@ let params = {
 	sceneHeight: 450,
 	bgSrc: './assets/img/interaction_hammer_chisel_bg.jpg',
 	popupSrc: './assets/img/popup.png',
+	audioSrc: './assets/hammer-hitting.mp3',
 	isSimulationActive: false,
 	isChiselMoving: false,
 	popupDelay: 1000
@@ -36,7 +37,7 @@ let objectsParams = {
 		clickCount: 5,
 		currentClick: 0,
 		prevXPosition: -40.0,
-		xMivingStep: 0.2
+		xMovingStep: 0.6
 	}
 }
 
@@ -90,6 +91,10 @@ class App {
 		chiselPlane.scale.copy(objectsParams.chisel.scale);
 		chiselPlane.position.copy(objectsParams.chisel.position);
 		scene.add(chiselPlane);
+
+		//audio
+		hummerSound = document.getElementsByTagName("audio")[0];
+
 		//popup
 		createPopupPlane();
 		addPopup('intro');
@@ -103,9 +108,11 @@ class App {
 }
 
 function onMouseDown() {
+	hummerSound.play();
 	if (params.isSimulationActive == false)
 		return;
 	params.isChiselMoving = true;
+	
 }
 
 function animate() {
@@ -114,7 +121,7 @@ function animate() {
 			/ objectsParams.chisel.clickCount;
 		if (chiselPlane.position.x < objectsParams.chisel.prevXPosition + clickStepWidth &&
 			chiselPlane.position.x < objectsParams.chisel.maxXPosition)
-			chiselPlane.position.x += objectsParams.chisel.xMivingStep;
+			chiselPlane.position.x += objectsParams.chisel.xMovingStep;
 		else {
 			params.isChiselMoving = false;
 			objectsParams.chisel.currentClick++;
