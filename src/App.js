@@ -108,11 +108,12 @@ class App {
 }
 
 function onMouseDown() {
-	hummerSound.play();
 	if (params.isSimulationActive == false)
 		return;
+	hummerSound.pause();
+	hummerSound.currentTime = 0;
+	hummerSound.play();
 	params.isChiselMoving = true;
-	
 }
 
 function animate() {
@@ -124,6 +125,7 @@ function animate() {
 			chiselPlane.position.x += objectsParams.chisel.xMovingStep;
 		else {
 			params.isChiselMoving = false;
+			//hummerSound.pause();
 			objectsParams.chisel.currentClick++;
 			objectsParams.chisel.prevXPosition = chiselPlane.position.x;
 			if (objectsParams.chisel.currentClick == objectsParams.chisel.clickCount)

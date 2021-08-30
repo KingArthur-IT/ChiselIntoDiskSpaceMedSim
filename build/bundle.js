@@ -41583,8 +41583,9 @@
 			chiselPlane.position.copy(objectsParams.chisel.position);
 			scene.add(chiselPlane);
 
+			//audio
 			hummerSound = document.getElementsByTagName("audio")[0];
-			//audio.play();
+
 			//popup
 			createPopupPlane();
 			addPopup('intro');
@@ -41598,11 +41599,12 @@
 	}
 
 	function onMouseDown() {
-		hummerSound.play();
 		if (params.isSimulationActive == false)
 			return;
+		hummerSound.pause();
+		hummerSound.currentTime = 0;
+		hummerSound.play();
 		params.isChiselMoving = true;
-		
 	}
 
 	function animate() {
