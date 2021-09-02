@@ -34,7 +34,7 @@ let objectsParams = {
 		scale: new THREE.Vector3(0.16, 0.16, 0.16),
 		position: new THREE.Vector3(-33.0, -3.0, -5.0),
 		prevXPosition: -33.0, //position x
-		maxXPosition: -7.0,
+		maxXPosition: -8.0,
 		clickCount: 5,
 		currentClick: 0,
 		xMovingStep: 0.6
@@ -44,7 +44,7 @@ let objectsParams = {
 		lineWarning: 0xff0000,
 		warningWaitTime: 250,
 		lineWidth: 4,
-		lineEndsPositionArray: [37.2, -1.0, -5.0, 37.2, -8.0, -5.0]
+		lineEndsPositionArray: [36.0, -1.0, -5.0, 36.0, -8.0, -5.0]
 	}
 }
 
@@ -84,7 +84,7 @@ class App {
 		const vertebralPlane = new THREE.Mesh(vertebralGeom, vertebralMaterial);
 		vertebralPlane.scale.copy(objectsParams.vertebral.scale);
 		vertebralPlane.position.copy(objectsParams.vertebral.position);
-		//scene.add(vertebralPlane);
+		scene.add(vertebralPlane);
 	
 		// chisel plane
 		const chiselGeom = new THREE.PlaneGeometry(objectsParams.chisel.width, objectsParams.chisel.height, 10.0);
