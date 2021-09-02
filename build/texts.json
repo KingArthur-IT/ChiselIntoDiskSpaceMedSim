@@ -1,6 +1,6 @@
 popupData = `{
     "introTitle" : "Message", 
-    "introText" : "Click the OK button to start simulation. Click the mouse button to move the chisel.",
+    "introText" : "In the previous simulation, you successfully docked the Chisel at the entrance of the disc space in the proper orientation. Click the OK button to begin gently tapping the Chisel into the disc space to create the keel cuts. Keep tapping to advance the Chisel until its distal tip reaches the posterior margin of the disc space, taking care to go no further than the posterior margin.",
     "correctTitle": "Message",
-    "correctText": "Good work! The chisel is now positioned properly."
+    "correctText": "You have now successfully completed the keel cuts. It is advisable to leave the Chisel in place until the Implant and inserter are ready to deploy."
 }`

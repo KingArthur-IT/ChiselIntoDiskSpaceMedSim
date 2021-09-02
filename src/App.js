@@ -1,8 +1,9 @@
 import * as THREE from 'three';
+import { Line2, LineGeometry, LineMaterial } from 'three-fatline';
 
 //scene
 let canvas, camera, scene, light, renderer,
-	chiselPlane, hummerSound;
+	chiselPlane, hummerSound, lineObj;
 //popup
 
 let popupPlaneMesh,
@@ -14,10 +15,9 @@ let params = {
 	sceneHeight: 450,
 	bgSrc: './assets/img/interaction_hammer_chisel_bg.jpg',
 	popupSrc: './assets/img/popup.png',
-	audioSrc: './assets/hammer-hitting.mp3',
 	isSimulationActive: false,
 	isChiselMoving: false,
-	popupDelay: 1000
+	popupDelay: 2000
 };
 let objectsParams = {
 	vertebral: {
@@ -32,12 +32,19 @@ let objectsParams = {
 		width: 850,
 		height: 450,
 		scale: new THREE.Vector3(0.16, 0.16, 0.16),
-		position: new THREE.Vector3(-40.0, -8.0, -5.0),
-		maxXPosition: -20.0,
+		position: new THREE.Vector3(-28.0, -3.0, -5.0),
+		maxXPosition: -7.0,
 		clickCount: 5,
 		currentClick: 0,
-		prevXPosition: -40.0,
+		prevXPosition: -28.0,
 		xMovingStep: 0.6
+	},
+	line: {
+		lineColor: 0x16ff00,
+		lineWarning: 0xff0000,
+		warningWaitTime: 250,
+		lineWidth: 4,
+		lineEndsPositionArray: [36.9, -1.0, -5.0, 36.9, -8.0, -5.0]
 	}
 }
 
@@ -77,7 +84,7 @@ class App {
 		const vertebralPlane = new THREE.Mesh(vertebralGeom, vertebralMaterial);
 		vertebralPlane.scale.copy(objectsParams.vertebral.scale);
 		vertebralPlane.position.copy(objectsParams.vertebral.position);
-		scene.add(vertebralPlane);
+		//scene.add(vertebralPlane);
 	
 		// chisel plane
 		const chiselGeom = new THREE.PlaneGeometry(objectsParams.chisel.width, objectsParams.chisel.height, 10.0);
@@ -95,6 +102,16 @@ class App {
 		//audio
 		hummerSound = document.getElementsByTagName("audio")[0];
 
+		//line
+		const lineMtl = new LineMaterial({
+			color: objectsParams.line.lineColor,
+			linewidth: objectsParams.line.lineWidth, // px
+			resolution: new THREE.Vector2(params.sceneWidth, params.sceneHeight) // resolution of the viewport
+		});
+		const lineGeometry = new LineGeometry();
+		lineGeometry.setPositions(objectsParams.line.lineEndsPositionArray);
+		lineObj = new Line2(lineGeometry, lineMtl);
+
 		//popup
 		createPopupPlane();
 		addPopup('intro');
@@ -110,6 +127,14 @@ class App {
 function onMouseDown() {
 	if (params.isSimulationActive == false)
 		return;
+	if (objectsParams.chisel.currentClick == objectsParams.chisel.clickCount)
+	{
+		lineObj.material.color.setHex(objectsParams.line.lineWarning);
+		setTimeout(() => {
+			lineObj.material.color.setHex(objectsParams.line.lineColor);
+		}, objectsParams.line.warningWaitTime);
+		return;
+	}
 	hummerSound.pause();
 	hummerSound.currentTime = 0;
 	hummerSound.play();
@@ -129,9 +154,12 @@ function animate() {
 			objectsParams.chisel.currentClick++;
 			objectsParams.chisel.prevXPosition = chiselPlane.position.x;
 			if (objectsParams.chisel.currentClick == objectsParams.chisel.clickCount)
+			{
+				scene.add(lineObj);
 				setTimeout(() => {
 					addPopup('done');
 				}, params.popupDelay);
+			}
 		}
 	}
 	requestAnimationFrame(animate);
@@ -147,7 +175,7 @@ function createPopupPlane() {
 		transparent: true
 	});    
 	popupPlaneMesh = new THREE.Mesh(popupPlane, popupMaterial);
-	popupPlaneMesh.scale.set(0.105, 0.105, 0.105)
+	popupPlaneMesh.scale.set(0.12, 0.14, 0.12)
 	popupPlaneMesh.position.z = 10;
 }
 
