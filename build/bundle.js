@@ -42855,11 +42855,11 @@
 			width: 850,
 			height: 450,
 			scale: new Vector3(0.16, 0.16, 0.16),
-			position: new Vector3(-28.0, -3.0, -5.0),
+			position: new Vector3(-33.0, -3.0, -5.0),
+			prevXPosition: -33.0, //position x
 			maxXPosition: -7.0,
 			clickCount: 5,
 			currentClick: 0,
-			prevXPosition: -28.0,
 			xMovingStep: 0.6
 		},
 		line: {
@@ -42867,7 +42867,7 @@
 			lineWarning: 0xff0000,
 			warningWaitTime: 250,
 			lineWidth: 4,
-			lineEndsPositionArray: [36.9, -1.0, -5.0, 36.9, -8.0, -5.0]
+			lineEndsPositionArray: [37.2, -1.0, -5.0, 37.2, -8.0, -5.0]
 		}
 	};
 
