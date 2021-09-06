@@ -42868,7 +42868,7 @@
 			warningWaitTime: 250,
 			lineWidth: 4,
 			lineEndsPositionArray: [36.0, -1.0, -5.0, 36.0, -8.0, -5.0]
-		}
+		} 
 	};
 
 	class App {
@@ -42943,13 +42943,18 @@
 			canvas.addEventListener('mousedown', onMouseDown, false);
 			popupBtn.addEventListener('click', removePopup, false);
 
+			canvas.addEventListener("touchstart",   touch_start_handler);
+
 			animate();
 		}
 	}
 
 	function onMouseDown() {
-		if (params.isSimulationActive == false)
-			return;
+		if (!params.isSimulationActive) return;
+		hummerClick();
+	}
+
+	function hummerClick(){
 		if (objectsParams.chisel.currentClick == objectsParams.chisel.clickCount)
 		{
 			lineObj.material.color.setHex(objectsParams.line.lineWarning);
@@ -43028,6 +43033,12 @@
 		document.getElementById('popupTitle').style.display = 'none';
 		document.getElementById('popupText').style.display = 'none';
 		popupBtn.style.display = 'none';
+	}
+
+	function touch_start_handler() {
+		if (!params.isSimulationActive) return;
+		
+		hummerClick();
 	}
 
 	const app = new App();
