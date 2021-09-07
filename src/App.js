@@ -155,6 +155,7 @@ function animate() {
 			chiselPlane.position.x += objectsParams.chisel.xMovingStep;
 		else {
 			params.isChiselMoving = false;
+			params.isSimulationActive = true;
 			//hummerSound.pause();
 			objectsParams.chisel.currentClick++;
 			objectsParams.chisel.prevXPosition = chiselPlane.position.x;
@@ -214,8 +215,8 @@ function removePopup() {
 
 function touch_start_handler() {
 	if (!params.isSimulationActive) return;
-	
 	hummerClick();
+	params.isSimulationActive = false;
 }
 
 export default App;
