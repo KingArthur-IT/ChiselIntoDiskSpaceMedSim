@@ -131,7 +131,8 @@ function onMouseDown() {
 	hummerClick();
 }
 
-function hummerClick(){
+function hummerClick() {
+	document.title = objectsParams.chisel.currentClick;
 	if (objectsParams.chisel.currentClick == objectsParams.chisel.clickCount)
 	{
 		lineObj.material.color.setHex(objectsParams.line.lineWarning);
@@ -144,6 +145,7 @@ function hummerClick(){
 	hummerSound.currentTime = 0;
 	hummerSound.play();
 	params.isChiselMoving = true;
+	params.isSimulationActive = false;
 }
 
 function animate() {
@@ -219,7 +221,6 @@ function removePopup() {
 
 function touch_start_handler() {
 	if (!params.isSimulationActive) return;
-	params.isSimulationActive = false;
 	hummerClick();
 }
 
