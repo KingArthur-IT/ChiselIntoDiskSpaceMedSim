@@ -42955,7 +42955,6 @@
 	}
 
 	function hummerClick() {
-		document.title = objectsParams.chisel.currentClick;
 		if (objectsParams.chisel.currentClick == objectsParams.chisel.clickCount)
 		{
 			lineObj.material.color.setHex(objectsParams.line.lineWarning);
@@ -42977,14 +42976,13 @@
 				/ objectsParams.chisel.clickCount;
 			if (chiselPlane.position.x < objectsParams.chisel.prevXPosition + clickStepWidth &&
 				chiselPlane.position.x < objectsParams.chisel.maxXPosition) {
-				params.isSimulationActive = false;
 				chiselPlane.position.x += objectsParams.chisel.xMovingStep;
 			}
 			else {
 				params.isChiselMoving = false;
 				setTimeout(() => {
 					params.isSimulationActive = true;
-				}, 1000);
+				}, 500);
 				//hummerSound.pause();
 				objectsParams.chisel.currentClick++;
 				objectsParams.chisel.prevXPosition = chiselPlane.position.x;
