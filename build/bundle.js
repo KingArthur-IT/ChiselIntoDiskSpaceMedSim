@@ -42857,17 +42857,17 @@
 			scale: new Vector3(0.16, 0.16, 0.16),
 			position: new Vector3(-33.0, -3.0, -5.0),
 			prevXPosition: -33.0, //position x
-			maxXPosition: -8.0,
+			maxXPosition: -9.15,
 			clickCount: 5,
 			currentClick: 0,
-			xMovingStep: 0.6
+			xMovingStep: 1.0
 		},
 		line: {
 			lineColor: 0x16ff00,
 			lineWarning: 0xff0000,
 			warningWaitTime: 250,
 			lineWidth: 4,
-			lineEndsPositionArray: [36.0, -1.0, -5.0, 36.0, -8.0, -5.0]
+			lineEndsPositionArray: [35.0, -1.0, -5.0, 35.0, -8.0, -5.0]
 		} 
 	};
 
