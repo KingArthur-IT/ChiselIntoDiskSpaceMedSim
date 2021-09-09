@@ -153,11 +153,13 @@ function animate() {
 		if (chiselPlane.position.x < objectsParams.chisel.prevXPosition + clickStepWidth &&
 			chiselPlane.position.x < objectsParams.chisel.maxXPosition) {
 			params.isSimulationActive = false;
-			chiselPlane.position.x += 0.5 * clickStepWidth; //objectsParams.chisel.xMovingStep;
+			chiselPlane.position.x += objectsParams.chisel.xMovingStep;
 		}
 		else {
 			params.isChiselMoving = false;
-			params.isSimulationActive = true;
+			setTimeout(() => {
+				params.isSimulationActive = true;
+			}, 1000);
 			//hummerSound.pause();
 			objectsParams.chisel.currentClick++;
 			objectsParams.chisel.prevXPosition = chiselPlane.position.x;
