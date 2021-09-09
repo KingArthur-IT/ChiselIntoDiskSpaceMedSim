@@ -42974,8 +42974,10 @@
 			let clickStepWidth = (objectsParams.chisel.maxXPosition - objectsParams.chisel.position.x) 
 				/ objectsParams.chisel.clickCount;
 			if (chiselPlane.position.x < objectsParams.chisel.prevXPosition + clickStepWidth &&
-				chiselPlane.position.x < objectsParams.chisel.maxXPosition)
+				chiselPlane.position.x < objectsParams.chisel.maxXPosition) {
+				params.isSimulationActive = false;
 				chiselPlane.position.x += 0.5 * clickStepWidth; //objectsParams.chisel.xMovingStep;
+			}
 			else {
 				params.isChiselMoving = false;
 				params.isSimulationActive = true;
@@ -43038,8 +43040,8 @@
 
 	function touch_start_handler() {
 		if (!params.isSimulationActive) return;
-		hummerClick();
 		params.isSimulationActive = false;
+		hummerClick();
 	}
 
 	const app = new App();
