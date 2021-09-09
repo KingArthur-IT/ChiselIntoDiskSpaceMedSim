@@ -42976,7 +42976,7 @@
 				/ objectsParams.chisel.clickCount;
 			if (chiselPlane.position.x < objectsParams.chisel.prevXPosition + clickStepWidth &&
 				chiselPlane.position.x < objectsParams.chisel.maxXPosition) {
-				chiselPlane.position.x += objectsParams.chisel.xMovingStep;
+				chiselPlane.position.x += clickStepWidth; //objectsParams.chisel.xMovingStep;
 			}
 			else {
 				params.isChiselMoving = false;
