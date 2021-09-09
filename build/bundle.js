@@ -42867,7 +42867,7 @@
 			lineWarning: 0xff0000,
 			warningWaitTime: 250,
 			lineWidth: 4,
-			lineEndsPositionArray: [35.0, -1.0, -5.0, 35.0, -8.0, -5.0]
+			lineEndsPositionArray: [34.9, -1.0, -5.0, 34.9, -8.0, -5.0]
 		} 
 	};
 
@@ -42975,7 +42975,7 @@
 				/ objectsParams.chisel.clickCount;
 			if (chiselPlane.position.x < objectsParams.chisel.prevXPosition + clickStepWidth &&
 				chiselPlane.position.x < objectsParams.chisel.maxXPosition)
-				chiselPlane.position.x += objectsParams.chisel.xMovingStep;
+				chiselPlane.position.x += 0.5 * clickStepWidth; //objectsParams.chisel.xMovingStep;
 			else {
 				params.isChiselMoving = false;
 				params.isSimulationActive = true;
